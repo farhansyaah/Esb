@@ -1,0 +1,186 @@
+describe("Login Page Test Cases", () => {
+
+  it("as a user i want to Login with correct Username & Wrong Password", () => {
+      //Login Using Correct Username & Wrong Password
+      cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+      const usernm = cy.get("input[name='username']");
+      usernm.type("Admin");
+      const pass = cy.get("input[name='password']");
+      pass.type("aaaa");
+
+      const btn = cy.get(".oxd-button");
+      btn.click();
+      cy.wait(2000)
+
+  });
+
+  it("as a user i want to Login Using inCorrect Username & Correct Password", () => {
+      //Login Using inCorrect Username & Correct Password
+      cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+      const usernm = cy.get("input[name='username']");
+      usernm.type("bangGober");
+      const pass = cy.get("input[name='password']");
+      pass.type("admin123");
+
+      const btn = cy.get(".oxd-button");
+      btn.click();
+      cy.wait(2000)
+
+  });
+
+  it("as a user i want to Login Using Null Username & Null Password", () => {
+      //Login Using null Username & null Password
+      cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+      const usernm = cy.get("input[name='username']");
+      usernm.type(" ");
+      const pass = cy.get("input[name='password']");
+      pass.type(" ");
+
+      const btn = cy.get(".oxd-button");
+      btn.click();
+      cy.wait(2000)
+
+  });
+
+  it("as a user i want to Login Using inCorrect Username & InCorrect Password", () => {
+      //Login Using inCorrect Username & inCorrect Password
+      cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+      const usernm = cy.get("input[name='username']");
+      usernm.type("dgjasdahj");
+      const pass = cy.get("input[name='password']");
+      pass.type("taatat");
+
+      const btn = cy.get(".oxd-button");
+      btn.click();
+      cy.wait(2000)
+  });
+
+    
+  it("as a user i want toLogin with correct values", () => {
+    //Login Using Correct Username & Password
+    cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    const usernm = cy.get("input[name='username']");
+    usernm.type("Admin");
+    const pass = cy.get("input[name='password']");
+    pass.type("admin123");
+
+    const btn = cy.get(".oxd-button");
+    btn.click();
+    cy.wait(2000)
+
+    const ddBtn = cy.get('.oxd-userdropdown-tab')
+    ddBtn.click();
+
+    cy.wait(2500)
+    const logbtn = cy.get(':nth-child(4) > .oxd-userdropdown-link');
+    logbtn.click();
+
+  });
+
+    it("As a user i want to Update personal details", () => {
+      cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+      const usernm = cy.get("input[name='username']");
+      usernm.type("Admin");
+      const pass = cy.get("input[name='password']");
+      pass.type("admin123");
+  
+      const btn = cy.get(".oxd-button");
+      btn.click();
+      cy.wait(2000)
+
+      const menu = cy.get(':nth-child(6) > .oxd-main-menu-item > .oxd-text');
+      menu.click();
+      cy.wait(2000)
+
+      const firstName = cy.get("input[name='firstName']")
+      firstName.type("update")
+      cy.wait(2000)
+
+      const saveBtn= cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button')
+      saveBtn.scrollIntoView();
+      saveBtn.click();
+
+      const ddBtn = cy.get('.oxd-userdropdown-tab')
+      ddBtn.click();
+  
+      cy.wait(2500)
+      const logbtn = cy.get(':nth-child(4) > .oxd-userdropdown-link');
+      logbtn.click();
+  });
+
+    it("As a user i want to Update contact details", () => {
+      cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+      const usernm = cy.get("input[name='username']");
+      usernm.type("Admin");
+      const pass = cy.get("input[name='password']");
+      pass.type("admin123");
+
+      const btn = cy.get(".oxd-button");
+      btn.click();
+      cy.wait(2000)
+
+      const myInfoMenu = cy.get(':nth-child(6) > .oxd-main-menu-item')
+      myInfoMenu.click();
+      cy.wait(2500)
+
+      const menuDetails = cy.contains('Contact Details')
+      menuDetails.click({force: true});
+      const menuContact = cy.get(':nth-child(3) > .oxd-grid-3 > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+      menuContact.type("update");
+    
+
+      const saveBtn= cy.get('.oxd-form-actions > .oxd-button')
+      saveBtn.scrollIntoView();
+      saveBtn.click();
+
+      const ddBtn = cy.get('.oxd-userdropdown-tab')
+      ddBtn.click();
+
+      cy.wait(2500)
+      const logbtn = cy.get(':nth-child(4) > .oxd-userdropdown-link');
+      logbtn.click();
+  });
+
+  it("As a user i want to Add Job Title ", () => {
+    cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    const usernm = cy.get("input[name='username']");
+    usernm.type("Admin");
+    const pass = cy.get("input[name='password']");
+    pass.type("admin123");
+
+    const btn = cy.get(".oxd-button");
+    btn.click();
+    cy.wait(2000)
+
+    const adminMenu = cy.get(':nth-child(1) > .oxd-main-menu-item')
+    adminMenu.click();
+    cy.wait(2500)
+
+    const dropDownmMenu = cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item')
+    dropDownmMenu.click()
+
+    const jobTitle = cy.get('.oxd-dropdown-menu > :nth-child(1)')
+    jobTitle.click()
+
+    const btnAdd = cy.get('.oxd-button')
+    btnAdd.click()
+
+    const inputText = cy.get(':nth-child(2) > .oxd-input')
+    inputText.type("Tentara");
+    
+    const inputTextDesc =  cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-textarea');
+    inputTextDesc.type("Keterangan");
+
+    const btnSaveJob = cy.get('.oxd-button--secondary')
+    btnSaveJob.click()
+
+    const ddBtnProfile = cy.get('.oxd-userdropdown-tab')
+    ddBtnProfile.click();
+
+    cy.wait(2500)
+    const logbtn = cy.get(':nth-child(4) > .oxd-userdropdown-link');
+    logbtn.click();
+});
+
+});
+
